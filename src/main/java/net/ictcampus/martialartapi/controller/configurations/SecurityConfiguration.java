@@ -16,6 +16,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import static net.ictcampus.martialartapi.controller.security.SecurityConstants.API_DOCUMENTATION_URLS;
 import static net.ictcampus.martialartapi.controller.security.SecurityConstants.SIGN_UP_URL;
 
 @Configuration
@@ -33,7 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
+                .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll().antMatchers(HttpMethod.GET, API_DOCUMENTATION_URLS).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
