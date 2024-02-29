@@ -17,26 +17,31 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
-@RestController
-@RequestMapping("/origins")
+@RestController //kennzeichnet die Klasse automatisch als Controller, so dass sie automatisch HTTP-Anfragen
+//bearbeitet und die Antworten direkt als JSON oder XML ausgibt.
+@RequestMapping("/origins")// macht, dass die Klasse sich automatisch angesprochen fühlt von Request
+//mit einem |origins. Klärt zuständigkeit
 public class OriginController {
 
-    @Autowired
+    @Autowired//ermöglicht dependency injection, dass heisst spring-boot erzeugt automatisch die abhängigkeit
+    // und instanziert das entsprechende bean zur laufzeit
     private final OriginService originService;
 
-    @Autowired
+    @Autowired//ermöglicht dependency injection, dass heisst spring-boot erzeugt automatisch die abhängigkeit
+    // und instanziert das entsprechende bean zur laufzeit
     public OriginController(OriginService originService) {
         this.originService = originService;
     }
 
-    @GetMapping(path = "{id}")
-    @Operation(summary = "find a Country of Origin by ID")
+    @GetMapping(path = "{id}")//definiert die handler-methode für Requests mit .../{id}
+    // klärt zuständigkeit / methode fühlt sich angesprochen
+    @Operation(summary = "find a Country of Origin by ID")//für Swagger als Methodenbeschreibung
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Country was found", content = {@Content(mediaType = "application/json",
                     schema = @Schema(implementation = Origin.class))}),
             @ApiResponse(responseCode = "404", description = "Country was not found", content = {@Content(mediaType = "application/json",
                     schema = @Schema (implementation = Origin.class))})
-    })
+    }) //auch für Swagger, beschreibt rückgabewert und responsecode-möglichkeiten
     public Origin findById(@PathVariable Integer id) {
         try {
             return originService.findById(id);
@@ -49,6 +54,7 @@ public class OriginController {
 
     @GetMapping
     @Operation(summary = "find a Country of Origin by Name or find all Countries in the Database")
+    //für Swagger als Methodenbeschreibung
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Country of Origin was found", content = {@Content(mediaType = "application/json",
                     array = @ArraySchema(schema = @Schema (implementation = Origin.class)))}),
@@ -69,7 +75,7 @@ public class OriginController {
     }
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "create a Country of Origin")
+    @Operation(summary = "create a Country of Origin")//für Swagger als Methodenbeschreibung
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Country of Origin was created"),
             @ApiResponse(responseCode = "403", description = "Not authorized to create a Country of Origin"),
@@ -84,7 +90,7 @@ public class OriginController {
     }
 
     @PutMapping
-    @Operation(summary = "update a Country of Origin")
+    @Operation(summary = "update a Country of Origin")//für Swagger als Methodenbeschreibung
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Country of Origin was updated")
     })
@@ -97,7 +103,7 @@ public class OriginController {
     }
 
     @DeleteMapping(path = "{id}")
-    @Operation(summary = "Delete a Country of Origin by ID")
+    @Operation(summary = "Delete a Country of Origin by ID")//für Swagger als Methodenbeschreibung
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Country of Origin was deleted"),
             @ApiResponse(responseCode = "403", description = "Not authorized to delete a Country of Origin"),

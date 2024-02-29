@@ -17,26 +17,31 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
-@RestController
-@RequestMapping("/users")
+@RestController //kennzeichnet die Klasse automatisch als Controller, so dass sie automatisch HTTP-Anfragen
+//bearbeitet und die Antworten direkt als JSON oder XML ausgibt.
+@RequestMapping("/users") // macht, dass die Klasse sich automatisch angesprochen fühlt von Request
+//mit einem |users. Klärt zuständigkeit
 public class UserController {
 
-    @Autowired
+    @Autowired//ermöglicht dependency injection, dass heisst spring-boot erzeugt automatisch die abhängigkeit
+    // und instanziert das entsprechende bean zur laufzeit
     private final UserService userService;
 
-    @Autowired
+    @Autowired//ermöglicht dependency injection, dass heisst spring-boot erzeugt automatisch die abhängigkeit
+    // und instanziert das entsprechende bean zur laufzeit
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping(path = "{id}")
-    @Operation(summary = "find a User by ID")
+    @GetMapping(path = "{id}") //definiert die handler-methode für Requests mit .../{id}
+    // klärt zuständigkeit / methode fühlt sich angesprochen
+    @Operation(summary = "find a User by ID") //für Swagger als Methodenbeschreibung
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User was found", content = {@Content(mediaType = "application/json",
                     schema = @Schema(implementation = User.class))}),
             @ApiResponse(responseCode = "404", description = "User was not found", content = {@Content(mediaType = "application/json",
                     schema = @Schema (implementation = User.class))})
-    })
+    }) //auch für Swagger, beschreibt rückgabewert und responsecode-möglichkeiten
     public User findById(@PathVariable Integer id) {
         try {
             return userService.findById(id);
@@ -45,8 +50,8 @@ public class UserController {
         }
     }
 
-    @GetMapping
-    @Operation(summary = "find all Users")
+    @GetMapping //nur eine @GetMapping Methode pro Controller darf vorhanden sein!
+    @Operation(summary = "find all Users")//für Swagger als Methodenbeschreibung
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Users were found", content = {@Content(mediaType = "application/json",
                     array = @ArraySchema(schema = @Schema (implementation = User.class)))}),
@@ -63,7 +68,7 @@ public class UserController {
 
     @PostMapping(consumes = "application/json", value = "/sign-up")
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "create a User")
+    @Operation(summary = "create a User")//für Swagger als Methodenbeschreibung
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "User was created"),
             @ApiResponse(responseCode = "400", description = "Validation failed")
@@ -77,7 +82,7 @@ public class UserController {
     }
 
     @PutMapping
-    @Operation(summary = "update a User")
+    @Operation(summary = "update a User")//für Swagger als Methodenbeschreibung
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User was updated")
     })
@@ -90,7 +95,7 @@ public class UserController {
     }
 
     @DeleteMapping(path = "{id}")
-    @Operation(summary = "Delete a User by ID")
+    @Operation(summary = "Delete a User by ID")//für Swagger als Methodenbeschreibung
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User was deleted"),
             @ApiResponse(responseCode = "403", description = "Not authorized to delete a User"),

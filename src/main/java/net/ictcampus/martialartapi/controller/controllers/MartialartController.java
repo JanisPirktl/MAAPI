@@ -16,26 +16,31 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
-@RestController
-@RequestMapping("/martialarts")
+@RestController //kennzeichnet die Klasse automatisch als Controller, so dass sie automatisch HTTP-Anfragen
+//bearbeitet und die Antworten direkt als JSON oder XML ausgibt.
+@RequestMapping("/martialarts")// macht, dass die Klasse sich automatisch angesprochen fühlt von Request
+//mit einem |martialarts. Klärt zuständigkeit
 public class MartialartController {
 
-    @Autowired
+    @Autowired//ermöglicht dependency injection, dass heisst spring-boot erzeugt automatisch die abhängigkeit
+    // und instanziert das entsprechende bean zur laufzeit
     private final MartialartService martialartService;
 
-    @Autowired
+    @Autowired//ermöglicht dependency injection, dass heisst spring-boot erzeugt automatisch die abhängigkeit
+    // und instanziert das entsprechende bean zur laufzeit
     public MartialartController(MartialartService martialartService) {
         this.martialartService = martialartService;
     }
 
-    @GetMapping(path = "{id}")
-    @Operation(summary = "find a Martialart by ID")
+    @GetMapping(path = "{id}")//definiert die handler-methode für Requests mit .../{id}
+    // klärt zuständigkeit / methode fühlt sich angesprochen
+    @Operation(summary = "find a Martialart by ID")//für Swagger als Methodenbeschreibung
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Martialart was found", content = {@Content(mediaType = "application/json",
                     schema = @Schema (implementation = Martialart.class))}),
             @ApiResponse(responseCode = "404", description = "Martialart was not found", content = {@Content(mediaType = "application/json",
                     schema = @Schema (implementation = Martialart.class))})
-    })
+    }) //auch für Swagger, beschreibt rückgabewert und responsecode-möglichkeiten
     public Martialart findById(@PathVariable Integer id) {
         try {
             return martialartService.findById(id);
