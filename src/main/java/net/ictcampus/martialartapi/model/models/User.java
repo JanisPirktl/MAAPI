@@ -3,6 +3,7 @@ package net.ictcampus.martialartapi.model.models;
 public class User {
     private Integer id_User;
     private String username;
+
     private String name;
     private String surname;
     private Integer martialart_Id;
