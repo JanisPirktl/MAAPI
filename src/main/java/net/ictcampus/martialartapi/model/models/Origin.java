@@ -40,4 +40,5 @@ public class Origin {
     public void setMartialarts(Set<Martialart> martialarts) {
         this.martialarts = martialarts;
     }
+
 }
