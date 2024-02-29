@@ -18,6 +18,7 @@ public class User {
     @NotNull(message = "name is required")
     @NotBlank(message = "username can't be empty")
     private String username;
+
     private String name;
     private String surname;
     private Integer martialart_Id;
