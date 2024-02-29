@@ -8,14 +8,27 @@ import java.util.Set;
 
 @Entity
 @Table(name = "origin")
+//als Entität erklären und denn Table-Name hinterlegen
 public class Origin {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //automatisch id erzeugen
     private Integer id_Origin;
     private String name;
-    @OneToMany
-    @JsonBackReference
-    private Set<Martialart> martialarts = new HashSet<>();
+    @OneToMany //1:m Kardinalität wird in Set-Struktur gespeichert
+                //erlaubt, dass Origin mehrfach vorkommen darf in Set<Martialart>
+    @JsonBackReference //verhindert zyklische Referenzen
+    //markiert die Seite der Beziehung, die ignoriert werden soll (hier Origin)
+    private Set<Martialart> martialarts = new HashSet<>(); //speichert dazugehörige Martial Arts (Mehrzahl)
+
+
+
+
+
+
+
+
+
+
 
     public Integer getId_Origin() {
         return id_Origin;

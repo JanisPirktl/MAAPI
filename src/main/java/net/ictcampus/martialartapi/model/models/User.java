@@ -9,14 +9,15 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "user")
+//als Entität erklären und denn Table-Name hinterlegen
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //automatisch id erzeugen
     private Integer id_User;
 
-    @NotNull(message = "name is required")
-    @NotBlank(message = "username can't be empty")
+    @NotNull(message = "name is required") // darf nicht nichts sein
+    @NotBlank(message = "username can't be empty") // darf nicht leer sein
     private String username;
 
     private String name;
@@ -24,9 +25,26 @@ public class User {
     private Integer martialart_Id;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    //bedeutet, dass das annotierte Feld oder die annotierte Methode nur für die
+    //Deserialisierung von eingehendem JSON in ein Java-Objekt verwendet wird, nicht aber
+    //für die Serialisierung eines Java-Objekts zurück in JSON. Mit anderen Worten, das Feld wird
+    //beim Schreiben in die Datenquelle berücksichtigt, aber beim Lesen ignoriert.
     @NotBlank
     @Length(min = 6, max = 255)
     private String password;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public Integer getId_User() {
         return id_User;

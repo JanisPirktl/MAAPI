@@ -4,14 +4,30 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "martialart")
+//als Entität erklären und denn Table-Name hinterlegen
 public class Martialart {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //automatisch id erzeugen
     private Integer id_Martialart;
-    @ManyToOne
-    @JoinColumn(name="origin_ID")
+
+    @ManyToOne //Kennzeichnet m:1 Kardinalität von Martialart zu Origin
+    @JoinColumn(name="origin_ID") //spezifiziert den Namen der Spalte, die als Fremdschlüssel verwendet wird
+                             // ohne dass wäre nicht klar, welche origin zu welcher martial art gehört
     private Origin origin;
     private String name;
+
+
+
+
+
+
+
+
+
+
+
+
 
     public Integer getId_Martialart() {
         return id_Martialart;
