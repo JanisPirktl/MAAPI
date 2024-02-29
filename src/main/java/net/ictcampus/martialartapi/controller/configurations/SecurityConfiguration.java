@@ -20,7 +20,7 @@ import static net.ictcampus.martialartapi.controller.security.SecurityConstants.
 import static net.ictcampus.martialartapi.controller.security.SecurityConstants.SIGN_UP_URL;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity //Bezeichnet die Sicherheitskonfiguration in der unter anderem Einstellungen zu JWT gemacht werden können
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private UserDetailsServiceImpl userDetailsService;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -33,9 +33,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll().antMatchers(HttpMethod.GET, API_DOCUMENTATION_URLS).permitAll()
-                .anyRequest().authenticated()
+        http.cors().and().csrf().disable().authorizeRequests() // Beginnt Konfiguration der Autorisierungsanforderungen
+                .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()//Erlaubt den Zugriff auf die Sign Up URL ohne Authentifizierung
+                .antMatchers(HttpMethod.GET, API_DOCUMENTATION_URLS).permitAll()//Erlaubt Zugriff auf die Swagger API dokumentations seiten. URLs befinden sich in Security Constants
+                .anyRequest().authenticated()//Alle anderen Requests benötigen Authentifizierung
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))
@@ -45,11 +46,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        // Konfiguriert den AuthenticationManager, um Benutzerdetails-Service und Passwort-Encoder zu verwenden
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
     }
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
+        // Definiert eine Bean für CORS-Konfiguration, die Standardwerte anwendet
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
         return source;
