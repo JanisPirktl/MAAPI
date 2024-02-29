@@ -27,7 +27,7 @@ public class OriginService {
         originRepository.save(origin);
     }
     public Iterable<Origin> findByName(String name){
-        return originRepository.findByName;
+        return originRepository.findByName(name);
     }
 
 }

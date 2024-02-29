@@ -28,7 +28,7 @@ public class MartialartService {
         martialartRepository.save(martialart);
     }
     public Iterable<Martialart> findByName(String name){
-        return martialartRepository.findByName;
+        return martialartRepository.findByName(name);
     }
 
 }

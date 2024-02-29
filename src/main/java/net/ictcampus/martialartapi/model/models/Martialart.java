@@ -1,8 +1,16 @@
 package net.ictcampus.martialartapi.model.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "martialart")
 public class Martialart {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_Martialart;
-    private Integer origin_ID;
+    @ManyToOne
+    @JoinColumn(name="origin_ID")
+    private Origin origin;
     private String name;
 
     public Integer getId_Martialart() {
@@ -13,12 +21,12 @@ public class Martialart {
         this.id_Martialart = id_Martialart;
     }
 
-    public Integer getOrigin_ID() {
-        return origin_ID;
+    public Origin getOrigin() {
+        return origin;
     }
 
-    public void setOrigin_ID(Integer origin_ID) {
-        this.origin_ID = origin_ID;
+    public void setOrigin(Origin origin) {
+        this.origin = origin;
     }
 
     public String getName() {

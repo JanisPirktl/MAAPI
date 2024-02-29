@@ -33,7 +33,10 @@ public class MartialartController {
 
 
     @GetMapping
-    public Iterable<Martialart> findByNameAndGenreName(@RequestParam(required = false) String name,
+    public Iterable<Martialart> findByName(){
+
+    }
+    /*public Iterable<Martialart> findByNameAndGenreName(@RequestParam(required = false) String name,
                                                   @RequestParam(required = false) String originName) {
         try {
             if (name != null) {
@@ -46,7 +49,8 @@ public class MartialartController {
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Martial art not found");
         }
-    }
+    }*/
+
 
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
