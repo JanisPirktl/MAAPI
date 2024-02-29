@@ -3,12 +3,12 @@ package net.ictcampus.martialartapi.model.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+@Entity
+@Table(name = "user")
 public class User {
 
     @Id

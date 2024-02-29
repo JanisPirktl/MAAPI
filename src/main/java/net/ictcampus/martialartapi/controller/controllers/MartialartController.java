@@ -46,20 +46,6 @@ public class MartialartController {
         }
 
     }
-    /*public Iterable<Martialart> findByNameAndGenreName(@RequestParam(required = false) String name,
-                                                  @RequestParam(required = false) String originName) {
-        try {
-            if (name != null) {
-                return martialartService.findByName(name);
-            } else if (originName != null) {
-                return martialartService.findByGenreName(originName);
-            } else {
-                return martialartService.findAll();
-            }
-        } catch (EntityNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Martial art not found");
-        }
-    }*/
 
 
     @PostMapping(consumes = "application/json")

@@ -3,11 +3,8 @@ package net.ictcampus.martialartapi.controller.configurations;
 import net.ictcampus.martialartapi.controller.security.JWTAuthenticationFilter;
 import net.ictcampus.martialartapi.controller.security.JWTAuthorizationFilter;
 import net.ictcampus.martialartapi.controller.services.UserDetailsServiceImpl;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,9 +19,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import static net.ictcampus.martialartapi.controller.security.SecurityConstants.SIGN_UP_URL;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "net.ictcampus.martialartapi.controller.repositories")
-@EntityScan(basePackages = "net.ictcampus.martialartapi.model.models")
-@EnableAutoConfiguration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private UserDetailsServiceImpl userDetailsService;

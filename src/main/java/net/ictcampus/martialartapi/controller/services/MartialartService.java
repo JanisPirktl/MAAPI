@@ -1,15 +1,22 @@
 package net.ictcampus.martialartapi.controller.services;
 
 import net.ictcampus.martialartapi.controller.repositories.MartialartRepository;
+import net.ictcampus.martialartapi.controller.repositories.OriginRepository;
 import net.ictcampus.martialartapi.model.models.Martialart;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
-@Service
 
+@Service
 public class MartialartService {
     private MartialartRepository martialartRepository;
+
+    @Autowired
+    public MartialartService(MartialartRepository martialartRepository) {
+        this.martialartRepository = martialartRepository;
+    }
 
     public void deleteById(Integer id){
         martialartRepository.deleteById(id);
