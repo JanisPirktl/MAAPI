@@ -19,6 +19,11 @@ import java.util.Date;
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 import static net.ictcampus.martialartapi.controller.security.SecurityConstants.*;
 
+
+//Diese Klasse authentifiziert Benutzer,
+// generiert bei Erfolg einen JWT und fügt ihn dem Response-Header hinzu.
+
+
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;
 

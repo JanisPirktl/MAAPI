@@ -10,11 +10,12 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
-@Service
+@Service //instanziert den Service als Bean, Spring-Boot weiss wo der Service sich befindet
 public class OriginService {
     private final OriginRepository originRepository;
 
-    @Autowired
+    @Autowired//ermöglicht dependency injection, dass heisst spring-boot erzeugt automatisch die abhängigkeit
+    // und instanziert das entsprechende bean zur laufzeit
     public OriginService(OriginRepository originRepository) {
         this.originRepository = originRepository;
     }

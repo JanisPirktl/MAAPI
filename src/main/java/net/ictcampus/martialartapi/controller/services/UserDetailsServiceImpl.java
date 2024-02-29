@@ -9,7 +9,12 @@ import org.springframework.stereotype.Service;
 
 import static java.util.Collections.emptyList;
 
-@Service
+//Diese Klasse lädt Benutzerdetails aus der Datenbank zur Authentifizierung durch Spring Security,
+//indem sie den
+//Benutzernamen verwendet. Bei Nichtauffinden eines Benutzers
+//wird eine UsernameNotFoundException geworfen.
+
+@Service //instanziert den Service als Bean, Spring-Boot weiss wo der Service sich befindet
 public class UserDetailsServiceImpl implements UserDetailsService {
     private final UserRepository userRepository;
 

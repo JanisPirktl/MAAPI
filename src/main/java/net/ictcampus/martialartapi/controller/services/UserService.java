@@ -9,12 +9,13 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
-@Service
+@Service //instanziert den Service als Bean, Spring-Boot weiss wo der Service sich befindet
 public class UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Autowired
+    @Autowired //ermöglicht dependency injection, dass heisst spring-boot erzeugt automatisch die abhängigkeit
+    // und instanziert das entsprechende bean zur laufzeit
     public UserService(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;

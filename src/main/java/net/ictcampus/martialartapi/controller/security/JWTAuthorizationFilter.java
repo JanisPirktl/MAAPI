@@ -16,6 +16,13 @@ import java.util.ArrayList;
 
 import static net.ictcampus.martialartapi.controller.security.SecurityConstants.*;
 
+//Diese Klasse ist ein Sicherheitsfilter, der JWTs (JSON Web Tokens) zur Autorisierung
+// in eingehenden HTTP-Anfragen überprüft. Sie extrahiert und validiert den Token aus dem
+// Authorization-Header. Bei gültigem Token wird die Benutzeridentität festgestellt und
+// eine Authentifizierung im Sicherheitskontext von Spring Security eingerichtet,
+// andernfalls wird die Anfrage ohne Authentifizierung weitergeleitet.
+
+
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     public JWTAuthorizationFilter(AuthenticationManager authManager) {
         super(authManager);

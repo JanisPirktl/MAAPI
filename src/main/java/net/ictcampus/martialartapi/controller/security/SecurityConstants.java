@@ -1,5 +1,9 @@
 package net.ictcampus.martialartapi.controller.security;
 
+//Die Klasse enthält nur Konstanten die in anderen Klassen verwendet werden.
+//Sie werden hier gesammelt um die anderen Klassen schlanker zu machen und Änderung
+//hier vereinfacht durchführen zu können
+
 public class SecurityConstants {
     public static final String SIGN_UP_URL = "/users/sign-up";
     public static final String[] API_DOCUMENTATION_URLS = {
