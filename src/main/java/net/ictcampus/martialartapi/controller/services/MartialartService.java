@@ -1,7 +1,6 @@
 package net.ictcampus.martialartapi.controller.services;
 
 import net.ictcampus.martialartapi.controller.repositories.MartialartRepository;
-import net.ictcampus.martialartapi.controller.repositories.OriginRepository;
 import net.ictcampus.martialartapi.model.models.Martialart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +10,7 @@ import java.util.Optional;
 
 @Service
 public class MartialartService {
-    private MartialartRepository martialartRepository;
+    private final MartialartRepository martialartRepository;
 
     @Autowired
     public MartialartService(MartialartRepository martialartRepository) {

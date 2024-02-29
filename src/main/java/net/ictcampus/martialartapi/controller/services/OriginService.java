@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Service
 public class OriginService {
-    private OriginRepository originRepository;
+    private final OriginRepository originRepository;
 
     @Autowired
     public OriginService(OriginRepository originRepository) {

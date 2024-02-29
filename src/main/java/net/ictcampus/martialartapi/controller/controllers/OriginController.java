@@ -1,6 +1,7 @@
 package net.ictcampus.martialartapi.controller.controllers;
 
 import net.ictcampus.martialartapi.controller.services.OriginService;
+import net.ictcampus.martialartapi.model.models.Martialart;
 import net.ictcampus.martialartapi.model.models.Origin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,15 @@ public class OriginController {
             return originService.findById(id);
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Origin not found");
+        }
+    }
+
+    @GetMapping
+    public Iterable<Origin> findAll() {
+        try {
+            return originService.findAll();
+        } catch (EntityNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Martial art not found");
         }
     }
 
