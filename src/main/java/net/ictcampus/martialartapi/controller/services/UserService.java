@@ -22,7 +22,10 @@ public class UserService {
 
     public User findById(Integer id){
         Optional<User> user = userRepository.findById(id);
+        //optional ist eine containerklasse, die vorhandensein oder fehlen eines wertes ausdrückt
         return user.orElseThrow(EntityNotFoundException::new);
+        //gibt user zurück wenn optional einen wert enthält
+        //andernfalls wird exception geworfen
     }
     public Iterable<User> findAll(){
         return userRepository.findAll();
