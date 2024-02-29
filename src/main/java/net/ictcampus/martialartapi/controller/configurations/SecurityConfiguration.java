@@ -23,7 +23,7 @@ import static net.ictcampus.martialartapi.controller.security.SecurityConstants.
 
 @Configuration
 @EnableJpaRepositories(basePackages = "net.ictcampus.martialartapi.controller.repositories")
-@EntityScan(basePackages = "net.ictcampus.campflix.model.models")
+@EntityScan(basePackages = "net.ictcampus.martialartapi.model.models")
 @EnableAutoConfiguration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
