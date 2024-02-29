@@ -36,5 +36,8 @@ public class MartialartService {
     public Iterable<Martialart> findByName(String name){
         return martialartRepository.findByName(name);
     }
+    public Iterable<Martialart> findByOriginName(String name) {
+        return martialartRepository.findByOriginName(name);
+    }
 
 }

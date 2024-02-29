@@ -32,14 +32,7 @@ public class OriginController {
         }
     }
 
-    @GetMapping
-    public Iterable<Origin> findAll() {
-        try {
-            return originService.findAll();
-        } catch (EntityNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Martial art not found");
-        }
-    }
+
 
     @GetMapping
     public Iterable<Origin> findByName(@RequestParam (required = false) String name) {

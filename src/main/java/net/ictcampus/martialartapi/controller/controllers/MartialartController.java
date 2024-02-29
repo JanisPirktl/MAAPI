@@ -31,24 +31,18 @@ public class MartialartController {
         }
     }
 
-    @GetMapping
-    public Iterable<Martialart> findAll() {
-        try {
-            return martialartService.findAll();
-        } catch (EntityNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Martial art not found");
-        }
-    }
+
 
     @GetMapping
-    public Iterable<Martialart> findByName(@RequestParam(required = false) String name){
+    public Iterable<Martialart> findByNameAndOriginName(@RequestParam(required = false) String name, @RequestParam(required = false) String originName){
         try{
-            if(name != null){
+            if (name != null){
                 return martialartService.findByName(name);
-            }else{
+            } else if (originName != null) {
+                return martialartService.findByOriginName(originName);
+            } else {
                 return martialartService.findAll();
             }
-
         }catch(EntityNotFoundException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Martialart not found");
         }
