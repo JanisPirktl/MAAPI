@@ -32,9 +32,14 @@ public class OriginController {
     }
 
     @GetMapping
-    public Iterable<Origin> findAll() {
+    public Iterable<Origin> findByName(@RequestParam (required = false) String name) {
         try {
-            return originService.findAll();
+            if (name != null){
+                return originService.findByName(name);
+            }else{
+                return originService.findAll();
+            }
+
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Origin not found");
         }

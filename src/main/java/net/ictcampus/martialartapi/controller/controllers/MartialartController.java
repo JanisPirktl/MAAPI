@@ -33,7 +33,17 @@ public class MartialartController {
 
 
     @GetMapping
-    public Iterable<Martialart> findByName(){
+    public Iterable<Martialart> findByName(@RequestParam(required = false) String name){
+        try{
+            if(name != null){
+                return martialartService.findByName(name);
+            }else{
+                return martialartService.findAll();
+            }
+
+        }catch(EntityNotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Martialart not found");
+        }
 
     }
     /*public Iterable<Martialart> findByNameAndGenreName(@RequestParam(required = false) String name,
