@@ -11,6 +11,6 @@ public interface MartialartRepository extends CrudRepository<Martialart, Integer
     @Query("SELECT m FROM Martialart m WHERE m.name LIKE CONCAT('%', :name, '%') ")
     Iterable<Martialart> findByName(@Param("name") String name);
 
-    @Query("Select m FROM Martialart m JOIN m.origin ori WHERE ori.name LIKE CONCAT ('%', :originName, '%')")
-    Iterable<Martialart> findByOriginName(@Param("originName") String originName);
+    @Query("Select m FROM Martialart m JOIN m.origin ori WHERE ori.name LIKE CONCAT ('%', :origin, '%')")
+    Iterable<Martialart> findByOriginName(@Param("origin") String origin);
 }
