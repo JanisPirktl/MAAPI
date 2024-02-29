@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service;
 
 import static java.util.Collections.emptyList;
 
-public class UserDetailsServiceImpl {
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
     private final UserRepository userRepository;
 
     public UserDetailsServiceImpl(UserRepository userRepository) {
