@@ -20,7 +20,8 @@ import static net.ictcampus.martialartapi.controller.security.SecurityConstants.
 import static net.ictcampus.martialartapi.controller.security.SecurityConstants.SIGN_UP_URL;
 
 @Configuration
-@EnableWebSecurity //Bezeichnet die Sicherheitskonfiguration in der unter anderem Einstellungen zu JWT gemacht werden können
+@EnableWebSecurity //Bezeichnet die Sicherheitskonfiguration in der unter anderem
+// Einstellungen zu JWT gemacht werden können
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private UserDetailsServiceImpl userDetailsService;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -31,12 +32,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
+
+    //diese methode konfiguriert, wer auf welche methode zugreifen darf
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests() // Beginnt Konfiguration der Autorisierungsanforderungen
-                .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()//Erlaubt den Zugriff auf die Sign Up URL ohne Authentifizierung
-                .antMatchers(HttpMethod.GET, API_DOCUMENTATION_URLS).permitAll()//Erlaubt Zugriff auf die Swagger API dokumentations seiten. URLs befinden sich in Security Constants
-                .anyRequest().authenticated()//Alle anderen Requests benötigen Authentifizierung
+        http.cors().and().csrf().disable().authorizeRequests()
+                // Beginnt Konfiguration der Autorisierungsanforderungen
+                .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
+                //Erlaubt den Zugriff auf die Sign Up URL ohne Authentifizierung
+                .antMatchers(HttpMethod.GET, API_DOCUMENTATION_URLS).permitAll()
+                //Erlaubt Zugriff auf die Swagger API dokumentations seiten. URLs befinden sich in Security Constants
+                .anyRequest().authenticated()
+                //Alle anderen Requests benötigen Authentifizierung
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))

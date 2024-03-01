@@ -4,10 +4,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@Configuration//Bezeichnet eine Klasse in der Beans erstellt werden dürfen, die von Spring verwaltet werden.
+@Configuration//Ähnlich wie Entity Anotation bei Models, definiert diese Klasse als Konfigurationsklasse
 public class ApplicationConfiguration {
 
     @Bean
+    //benutzerdefinierte Beans zu erstellen und zu konfigurieren, anstatt sich auf die
+    // automatische Komponentenerkennung und -erstellung durch Spring zu verlassen.
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }//deklaration des Passwortencoders als Bean damit er leicht in anderen Klassen verwendet werden kann.
