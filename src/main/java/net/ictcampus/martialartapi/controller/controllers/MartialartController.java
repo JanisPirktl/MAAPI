@@ -58,7 +58,7 @@ public class MartialartController {
                     array = @ArraySchema(schema = @Schema (implementation = Martialart.class)))}),
             @ApiResponse(responseCode = "404", description = "Martialart was not found", content = {@Content(mediaType = "application/json",
                     array = @ArraySchema(schema = @Schema (implementation = Martialart.class)))})
-    })
+    })//anders als vorher muss hier ein arraySchema definiert werden da der Content des Rückgabewerts eine Liste ist.
     public Iterable<Martialart> findByNameAndOriginName(@RequestParam(required = false) String name, @RequestParam(required = false) String originName){
         try{
             if (name != null){
@@ -82,7 +82,7 @@ public class MartialartController {
             @ApiResponse(responseCode = "201", description = "Martialart was created"),
             @ApiResponse(responseCode = "403", description = "Not authorized to create a Martialart"),
             @ApiResponse(responseCode = "400", description = "Validation failed")
-    })
+    })//hier muss kein Content angegeben werden da der return typ void ist
     public void insert(@Valid @RequestBody Martialart martialart) {
         try {
             martialartService.insert(martialart);

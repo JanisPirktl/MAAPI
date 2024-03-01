@@ -12,7 +12,7 @@ public class ApplicationConfiguration {
     // automatische Komponentenerkennung und -erstellung durch Spring zu verlassen.
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
-    }//deklaration des Passwortencoders als Bean damit er leicht in anderen Klassen verwendet werden kann.
+    }//deklaration des Passwortencoders als Bean damit er in anderen Klassen verwendet werden kann.
     //BCrypt wird verwendet da er sehr sicher ist und Salting eingebaut hat
 
 }
