@@ -57,7 +57,7 @@ public class UserController {
                     array = @ArraySchema(schema = @Schema (implementation = User.class)))}),
             @ApiResponse(responseCode = "404", description = "Users were not found", content = {@Content(mediaType = "application/json",
                     array = @ArraySchema(schema = @Schema (implementation = User.class)))})
-    })
+    })//anders als vorher muss hier ein arraySchema definiert werden da der Content des Rückgabewerts eine Liste ist.
     public Iterable<User> findAll() {
         try {
             return userService.findAll();
@@ -72,7 +72,7 @@ public class UserController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "User was created"),
             @ApiResponse(responseCode = "400", description = "Validation failed")
-    })
+    })//hier muss kein Content angegeben werden da der return typ void ist
     public void signUp(@Valid @RequestBody User user) {
         try {
             userService.signUp(user);
@@ -85,7 +85,7 @@ public class UserController {
     @Operation(summary = "update a User")//für Swagger als Methodenbeschreibung
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User was updated")
-    })
+    })//hier muss kein Content angegeben werden da der return typ void ist
     public void update(@Valid @RequestBody User user) {
         try {
             userService.update(user);

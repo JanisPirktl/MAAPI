@@ -60,7 +60,7 @@ public class OriginController {
                     array = @ArraySchema(schema = @Schema (implementation = Origin.class)))}),
             @ApiResponse(responseCode = "404", description = "Country of Origin was not found", content = {@Content(mediaType = "application/json",
                     array = @ArraySchema(schema = @Schema (implementation = Origin.class)))})
-    })
+    })//anders als vorher muss hier ein arraySchema definiert werden da der Content des Rückgabewerts eine Liste ist.
     public Iterable<Origin> findByName(@RequestParam (required = false) String name) {
         try {
             if (name != null){
@@ -80,7 +80,7 @@ public class OriginController {
             @ApiResponse(responseCode = "201", description = "Country of Origin was created"),
             @ApiResponse(responseCode = "403", description = "Not authorized to create a Country of Origin"),
             @ApiResponse(responseCode = "400", description = "Validation failed")
-    })
+    })//hier muss kein Content angegeben werden da der return typ void ist
     public void insert(@Valid @RequestBody Origin origin) {
         try {
             originService.insert(origin);
@@ -93,7 +93,7 @@ public class OriginController {
     @Operation(summary = "update a Country of Origin")//für Swagger als Methodenbeschreibung
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Country of Origin was updated")
-    })
+    })//hier muss kein Content angegeben werden da der return typ void ist
     public void update(@Valid @RequestBody Origin origin) {
         try {
             originService.update(origin);
@@ -108,7 +108,7 @@ public class OriginController {
             @ApiResponse(responseCode = "200", description = "Country of Origin was deleted"),
             @ApiResponse(responseCode = "403", description = "Not authorized to delete a Country of Origin"),
             @ApiResponse(responseCode = "400", description = "Validation failed")
-    })
+    })//hier muss kein Content angegeben werden da der return typ void ist
     public void delete(@PathVariable Integer id) {
         try {
             originService.deleteById(id);

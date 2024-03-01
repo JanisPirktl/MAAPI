@@ -59,12 +59,12 @@ public class MartialartController {
             @ApiResponse(responseCode = "404", description = "Martialart was not found", content = {@Content(mediaType = "application/json",
                     array = @ArraySchema(schema = @Schema (implementation = Martialart.class)))})
     })//anders als vorher muss hier ein arraySchema definiert werden da der Content des Rückgabewerts eine Liste ist.
-    public Iterable<Martialart> findByNameAndOriginName(@RequestParam(required = false) String name, @RequestParam(required = false) String originName){
+    public Iterable<Martialart> findByNameAndOriginName(@RequestParam(required = false) String name, @RequestParam(required = false) String origin){
         try{
             if (name != null){
                 return martialartService.findByName(name);
-            } else if (originName != null) {
-                return martialartService.findByOriginName(originName);
+            } else if (origin != null) {
+                return martialartService.findByOriginName(origin);
             } else {
                 return martialartService.findAll();
             }
@@ -95,7 +95,7 @@ public class MartialartController {
     @Operation(summary = "update a Martialart")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Martialart was updated")
-    })
+    })//hier muss kein Content angegeben werden da der return typ void ist
     public void update(@Valid @RequestBody Martialart martialart) {
         try {
             martialartService.update(martialart);
@@ -110,7 +110,7 @@ public class MartialartController {
             @ApiResponse(responseCode = "200", description = "Martialart was deleted"),
             @ApiResponse(responseCode = "403", description = "Not authorized to delete a Martialart"),
             @ApiResponse(responseCode = "400", description = "Validation failed")
-    })
+    })//hier muss kein Content angegeben werden da der return typ void ist
     public void delete(@PathVariable Integer id) {
         try {
             martialartService.deleteById(id);
